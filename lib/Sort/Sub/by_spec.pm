@@ -52,6 +52,7 @@ sub gen_sorter {
     die "Sorting case-insensitively not supported yet" if $is_ci;
 
     my $spec = $args->{spec};
+    ## no critic: BuiltinFunctions::ProhibitStringyEval
     if (!ref $spec) { $spec = eval $spec; die if $@ }
     $spec = $spec->() if ref $spec eq 'CODE';
 
