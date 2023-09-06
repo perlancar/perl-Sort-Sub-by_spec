@@ -51,8 +51,9 @@ sub gen_sorter {
 
     die "Sorting case-insensitively not supported yet" if $is_ci;
 
-    my $spec = ref $args->{spec} eq 'CODE' ?
-        $args->{spec}->() : $args->{spec};
+    my $spec = $args->{spec};
+    if (!ref $spec) { $spec = eval $spec; die if $@ }
+    $spec = $spec->() if ref $spec eq 'CODE';
 
     Sort::BySpec::cmp_by_spec(spec=>$spec, reverse=>$is_reverse);
 }
