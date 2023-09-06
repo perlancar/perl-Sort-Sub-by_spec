@@ -1,13 +1,13 @@
 package Sort::Sub::by_spec;
 
+use 5.010001;
+use strict;
+use warnings;
+
 # AUTHORITY
 # DATE
 # DIST
 # VERSION
-
-use 5.010001;
-use strict;
-use warnings;
 
 sub meta {
     return {
@@ -54,7 +54,7 @@ sub gen_sorter {
     my $spec = ref $args->{spec} eq 'CODE' ?
         $args->{spec}->() : $args->{spec};
 
-    Sort::BySpec::cmp_by_spec(spec=>$example, reverse=>$is_reverse);
+    Sort::BySpec::cmp_by_spec(spec=>$spec, reverse=>$is_reverse);
 }
 
 1;
